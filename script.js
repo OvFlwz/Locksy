@@ -145,8 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dom.incSpecial.checked) characterPool += charSets.special;
         
         if (characterPool === '') {
-            // Replaced alert with a more subtle notification if possible in this context.
-            // For now, keeping it simple as the original had an alert.
             console.error('Please select at least one character set for password generation.');
             dom.copyBtn.dataset.tooltip = 'Select a character set!';
             setTimeout(() => { dom.copyBtn.dataset.tooltip = 'Copy to Clipboard'; }, 2000);
@@ -166,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function copyToClipboard(message = 'Password copied!') {
         if (!dom.passwordInput.value) return;
-        // Using the older execCommand for wider compatibility in iFrames
         const textArea = document.createElement("textarea");
         textArea.value = dom.passwordInput.value;
         document.body.appendChild(textArea);
@@ -209,9 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function toggleHistoryPanel() {
-        const isActive = dom.historyPanel.classList.toggle('hidden');
-        dom.historyBtn.querySelector('span').classList.toggle('text-blue-500', !isActive);
-        if (!isActive) {
+        dom.historyPanel.classList.toggle('hidden');
+        if (!dom.historyPanel.classList.contains('hidden')) {
             dom.historyPanel.style.maxHeight = dom.historyPanel.scrollHeight + "px";
         } else {
             dom.historyPanel.style.maxHeight = '0';
@@ -219,9 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addToHistory(password) {
+        if (!password) return;
         if (passwordHistory[0] === password) return;
         passwordHistory.unshift(password);
-        // Limit changed from 5 to 3
         if (passwordHistory.length > 3) passwordHistory.pop();
         localStorage.setItem('passwordHistory', JSON.stringify(passwordHistory));
         updateHistoryPanel();
