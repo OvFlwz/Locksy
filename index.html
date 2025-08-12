@@ -44,12 +44,9 @@
             
             <!-- Strength Meter & Results -->
             <div class="fade-in-up" style="animation-delay: 300ms;">
-                <div class="w-full bg-gray-200 dark:bg-gray-700/50 rounded-full h-3 mb-2 overflow-hidden">
-                    <div id="strength-bar" class="h-full rounded-full transition-all-smooth" style="width: 0%; background-color: #ef4444;"></div>
-                </div>
-                <div id="results-container" class="flex justify-between items-center h-8 text-sm opacity-0 transition-opacity duration-500">
-                    <p id="strength-label" class="font-bold"></p>
-                    <p id="time-to-crack-label" class="text-gray-600 dark:text-gray-400 font-medium"></p>
+                <!-- Barre de progression supprimée -->
+                <div id="results-container" class="flex justify-between items-center h-8 text-sm opacity-0 transition-opacity duration-500" style="opacity: 1;">
+                    <p id="entropy-label" class="font-medium text-black"></p>
                 </div>
             </div>
 
@@ -70,9 +67,9 @@
                 <div class="space-y-4">
                     <div class="flex items-center justify-between">
                         <label for="length-slider" class="font-medium">Longueur du mot de passe :</label>
-                        <span id="length-value" class="font-bold text-lg text-blue-500">32</span>
+                        <span id="length-value" class="font-bold text-lg text-blue-500">0</span>
                     </div>
-                    <input id="length-slider" type="range" min="8" max="32" value="16" class="w-full">
+                    <input id="length-slider" type="range" min="0" max="64" value="0" class="w-full">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <label class="flex items-center p-3 bg-white/20 dark:bg-gray-800/60 rounded-lg cursor-pointer"><input type="checkbox" id="inc-uppercase" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" checked><span class="ml-3">Majuscules</span></label>
                         <label class="flex items-center p-3 bg-white/20 dark:bg-gray-800/60 rounded-lg cursor-pointer"><input type="checkbox" id="inc-numbers" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" checked><span class="ml-3">Chiffres</span></label>
@@ -87,19 +84,12 @@
         <footer class="text-center mt-8 text-gray-500 dark:text-gray-500 fade-in-up" style="animation-delay: 600ms;">
             <div class="flex items-center justify-center space-x-6 mb-4">
                 <button id="history-btn" class="text-sm font-medium hover:text-gray-900 dark:hover:text-white transition-all-smooth relative">
-                    <span class="gradient-title">Historique des mots de passe</span>
+                    <span class="gradient-title"></span>
                 </button>
                 <button id="theme-toggle" class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-all-smooth">
                     <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-500"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
                     <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-300 hidden"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
                 </button>
-            </div>
-            <div id="history-panel" class="hidden max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-                <div class="bg-white/10 dark:bg-gray-900/50 backdrop-blur-xl rounded-lg p-4 mt-2 border border-white/20 dark:border-gray-700/50">
-                    <!-- Text changed from "Last 5" to "Last 3" -->
-                    <p class="font-semibold text-center text-gray-800 dark:text-white"></p>
-                    <ul id="history-list" class="text-center text-gray-600 dark:text-gray-400 mt-2 font-mono text-sm space-y-1"></ul>
-                </div>
             </div>
            
             <div class="flex justify-center space-x-6">
